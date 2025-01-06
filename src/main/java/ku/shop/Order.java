@@ -14,8 +14,11 @@ public class Order {
     }
 
     public void addItem(Product prod, int quantity) {
-        items.add(new OrderItem(prod, quantity));
-        prod.cutStock(quantity);
+        if (prod.getStock() - quantity >= 0) {
+            items.add(new OrderItem(prod, quantity));
+            prod.cutStock(quantity);
+        }
+
     }
 
     public double getTotal() {
